@@ -2,6 +2,7 @@
 
 var assert = require('assert');
 var fs = require('fs');
+var os = require('os');
 var path = require('path');
 var conflict = require('..');
 
@@ -19,7 +20,6 @@ describe('Conflicter', function () {
 
   it('raise conflict on file with different contents', function () {
     assert.equal(true, conflict(__filename, 'foo'));
-
   });
 
   it('does not raise conflict if file contents is the same (as Buffer)', function () {
@@ -33,7 +33,6 @@ describe('Conflicter', function () {
   describe('with binary files', function () {
     it('raise conflict on file with different contents', function () {
       assert.equal(true, conflict(logoPath, fs.readFileSync(standingPath)));
-
     });
 
     it('raise conflict on file with different file type', function () {
@@ -42,6 +41,16 @@ describe('Conflicter', function () {
 
     it('does not raise conflict if file contents is the same', function () {
       assert.equal(false, conflict(logoPath, fs.readFileSync(logoPath)));
+    });
+
+    it('does not raise conflict if file contents is the same with different utime', function (done) {
+      var newPath = path.join(os.tmpdir(), 'tmp-logo.png');
+      fs.createReadStream(logoPath)
+        .pipe(fs.createWriteStream(newPath))
+        .on('finish', function () {
+          assert.equal(false, conflict(logoPath, fs.readFileSync(newPath)));
+          fs.unlink(newPath, done);
+        });
     });
   });
 });
