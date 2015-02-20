@@ -22,6 +22,10 @@ describe('Conflicter', function () {
     assert.equal(true, conflict(__filename, 'foo'));
   });
 
+  it('raise conflict on empty file', function() {
+    assert.equal(true, conflict(__filename, null));
+  });
+
   it('does not raise conflict if file contents is the same (as Buffer)', function () {
     assert.equal(false, conflict(__filename, fs.readFileSync(__filename)));
   });

@@ -22,6 +22,9 @@ module.exports = function (filepath, contents) {
   // If file path point to a directory, then it's not safe to write
   if (fs.statSync(filepath).isDirectory()) return true;
 
+  // If file is empty, then it's not safe to write
+  if (!contents) return true;
+
   var actual = fs.readFileSync(path.resolve(filepath));
 
   if (!(contents instanceof Buffer)) {
