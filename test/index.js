@@ -10,7 +10,7 @@ var logoPath = path.join(__dirname, 'fixtures/yeoman-logo.png');
 var standingPath = path.join(__dirname, 'fixtures/yeoman-standing.png');
 
 describe('Conflicter', function () {
-  it('raise conflict on directory', function () {
+  it('raises conflict on directory', function () {
     assert.equal(true, conflict(__dirname));
   });
 
@@ -18,7 +18,7 @@ describe('Conflicter', function () {
     assert.equal(false, conflict('whatever-file.unexistent', 'foo'));
   });
 
-  it('raise conflict on file with different contents', function () {
+  it('raises conflict on file with different contents', function () {
     assert.equal(true, conflict(__filename, 'foo'));
   });
 
@@ -30,12 +30,16 @@ describe('Conflicter', function () {
     assert.equal(false, conflict(__filename, fs.readFileSync(__filename, 'utf8')));
   });
 
+  it('raises conflict if new content is null', function () {
+    assert.equal(true, conflict(__filename, null));
+  });
+
   describe('with binary files', function () {
-    it('raise conflict on file with different contents', function () {
+    it('raises conflict on file with different contents', function () {
       assert.equal(true, conflict(logoPath, fs.readFileSync(standingPath)));
     });
 
-    it('raise conflict on file with different file type', function () {
+    it('raises conflict on file with different file type', function () {
       assert.equal(true, conflict(logoPath, 'new content'));
     });
 
