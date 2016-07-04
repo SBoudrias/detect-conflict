@@ -1,6 +1,6 @@
 {
   "name": "detect-conflict",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Small utility library that check if a new file content can be merged safely in the on-disk existing file.",
   "main": "index.js",
   "files": [
