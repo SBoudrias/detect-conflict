@@ -1,4 +1,4 @@
-detect-conflict
+detect-conflict [![Build Status](https://travis-ci.org/SBoudrias/detect-conflict.svg?branch=master)](https://travis-ci.org/SBoudrias/detect-conflict)
 =================
 
 Small utility library that check if a new file content can be merged safely in the on-disk existing file.
