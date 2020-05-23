@@ -21,6 +21,6 @@
   "homepage": "https://github.com/SBoudrias/detect-conflict",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^3.1.2"
+    "mocha": "^7.2.0"
   }
 }
