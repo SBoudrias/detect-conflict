@@ -1,4 +1,4 @@
-detect-conflict [![Build Status](https://travis-ci.org/SBoudrias/detect-conflict.svg?branch=master)](https://travis-ci.org/SBoudrias/detect-conflict)
+detect-conflict
 =================
 
 Small utility library that check if a new file content can be merged safely in the on-disk existing file.
@@ -7,9 +7,9 @@ Small utility library that check if a new file content can be merged safely in t
 
 ### Example
 ```js
-var conflict = require('detect-conflict');
+import conflict from 'detect-conflict';
 
-var isConflicting = conflict('some-file-name.js', 'var newContent;');
+const isConflicting = conflict('some-file-name.js', 'var newContent;');
 ```
 
 It'll return `true` if a conflict is found, `false` otherwise.
